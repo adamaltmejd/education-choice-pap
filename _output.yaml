@@ -1,0 +1,8 @@
+bibliography: "bibliography.bib"
+csl: "chicago-author-date.csl"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    secnumdepth: 2
