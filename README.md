@@ -1,6 +1,6 @@
 # Pre Analysis Plan: "Effects of Education Choice"
 
-This repository contains a set of pre analysis plans for the project *Effects of Education Choice*. These plans have been registered on the Open Science Foundation before the author was given access to any data.
+This repository contains a set of pre analysis plans for the project *Effects of Education Choice*. These plans have been [registered on the Open Science Foundation](https://osf.io/rj6t7/) before the author was given access to any data.
 
 ## License
 
