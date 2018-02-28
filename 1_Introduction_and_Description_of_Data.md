@@ -2,7 +2,7 @@
 title: "Pre-Analysis Plan: 1. Introduction"
 author: "Adam Altmejd"
 thanks: "Stockholm School of Economics, adam@altmejd.se"
-date: "2017-10-03"
+date: "2018-02-23"
 ---
 
 # Introduction
@@ -13,7 +13,7 @@ The purpose of the projects presented here is to evaluate the consequences of ed
 
 In this document, we begin by describing the data that will be used throughout all projects. When writing this plan, we have yet to gain access to the data and all descriptions are based on information given by the collaborating agencies on the characteristics of the data sets.
 
-In the accompanying pre analysis plan we dive deeper into a number of different research questions that will be analyzed using this data. We will (a) use the data to study financial returns to fields of study and replicate the results from @Kirkeboen2016_field_study in a Swedish setting, (b) analyze how education choices of individuals affect the behavior of their younger siblings, and (c) study how college peers are influenced by the skill composition of their class.
+In the accompanying pre analysis plans we dive deeper into a number of different research questions that will be analyzed using this data. We will (ch. 2) use the data to study financial returns to fields of study and replicate the results from @Kirkeboen2016_field_study in a Swedish setting, (ch. 3) analyze how education choices of individuals affect the behavior of their younger siblings, (ch. 4) study how college peers are influenced by the skill composition of their class, and (ch. 5) evaluate the impact of education on financial decision making and stock market participation.
 
 In each project, we will present many different specifications and planned strategies to study each research question. We will however clearly state which of these are the main tests of the hypotheses, where the p-values can be interpreted at face value, and which should rather be seen as supplementary or exploratory, needing new data to confirm any possible findings. This disposition is especially useful because we am expecting to receive more data at a later stage, making it possible to test also these exploratory studies in a rigorous way. A second reason for this is to decrease the number of hypotheses tests, since we will have to correct the significance level depending on the number of hypothesis tests that are being performed.
 
@@ -25,7 +25,7 @@ It is difficult to plan for all contingencies when working with empirical data, 
 
 By pre registering this report I fully commit to following the plan outlined below. It is far from impossible that I will run into unexpected obstacles, perhaps requiring me to change course and not follow this plan. But should that happen I will state all such deviations and give arguments to why they are necessary, yielding at worst projects where the pre-analysis plan was not followed, which is arguably still preferable to not having one to start with.
 
-Moreover, the first data delivery will contain university applications from 2008--2016. We are simultaneously trying to retrieve data also from 1993--2008. Should we receive this data it will be at a later stage, and these pre analysis plans could be updated based on exploratory analysis made on the first data set that can then be tested on the second.
+The first version of this pre analysis plan was registered before the authors had access to any data^[The plan was registered at OSF.io on 2017-10-03 and can be accessed via this link: <https://osf.io/rj6t7/>.]. Since then, we have ordered supplementary data from the Swedish National Archives including all applications between 1992 and 2005, and some parts of the plan have been updated. Changes to the plan can be tracked through our [Github Repository](https://github.com/adamaltmejd/education-choice-pap). Extensions to this plan made after the first data was analyzed will therefor only be evaluated on the second data set. This new data set will also provide a robustness measure for the initial analysis.
 
 # The Application System
 
@@ -81,11 +81,13 @@ Furthermore, @Kirkeboen2016_field_study show that in unordered choice situations
 
 # Data
 
-The data set is the population of applicants to post-secondary education in Sweden 2008-2016, as well as their parents and siblings. At the time of registration of this pre analysis plan, the data is being collected and prepared by SCB, and the researchers involved in this study have no access to it.
+The data consists of two parts. Registry data on the Swedish population, that includes yearly registries of all individuals from 1970 and onwards. This data is linked to two application registries. One using data archived at the Swedish National archives from years 1992--2005. In 2005, the application system was rebuilt and a new government authority started managing it. We also have their data for the years 2008--2017.
 
-All Swedish university applications are managed by Universitets- och Högskolerådet (UHR) through their online portal [Antagning.se](http://www.antagning.se). The application process is described in detail above. The application data will be sent directly from UHR to SCB who will match it to the Swedish population registry and connect all individual level variables before removing any identifying information.
+Currently, all Swedish university applications are managed by Universitets- och Högskolerådet (UHR) through their online portal [Antagning.se](http://www.antagning.se). The application process is described in detail above. The application data will be sent directly from UHR to SCB who will match it to the Swedish population registry and connect all individual level variables before removing any identifying information.
 
-In the application data, the unit of observation is $\text{year}\times \text{semester} \times \text{applicant} \times \text{program} \times \text{institution} \times \text{admission group}$ and the variables are described in the table below. Since UHR only tracks applicants until the second round is finished, they do not know for certain if the applicant has actually started. I will therefor match the application data to the SCB university registry data to see if the applicant is actually registered.
+During 1992--2005, applications were managed by Verket för Högskoleservice, VHS. While VHS do not exist anymore, their data has been archived by the Swedish National Archives who will share a linked but anonymized version with us.
+
+In the application data, the unit of observation is $\text{year}\times \text{semester} \times \text{applicant} \times \text{program} \times \text{institution} \times \text{admission group}$ and the variables are described in the table below. Since VHS/UHR only tracks applicants until the second round is finished, they do not know for certain if the applicant has actually started. We will therefor match the application data to the SCB university registry data to see if the applicant is actually registered.
 
 |Variable   | Description   |
 |-----------|---------------|
@@ -102,11 +104,11 @@ In the application data, the unit of observation is $\text{year}\times \text{sem
 | Result round 2 | Queue pos. r2, 0 if admitted, NA if not in queue |
 | Registered | 1 if student actually started the program (from SCB) |
 
-The individual data from SCB is yearly and includes observations for all individuals in the application data, their parents and siblings.
+The individual data from SCB is yearly and includes the complete population registry since 1970, with family links for parents and siblings. It is linked to the application data using the personal identification numbers before it is anonymized.
 
 | Variable  | Description/LISA variable name |
 |-----------|---------------|
-| Year      | 2000-2016     |
+| Year      | 1970-2016     |
 | Personal ID | Unique individual id |
 | Family ID | Unique id for all individuals in one family |
 | Parent | 1 if parent in family |
@@ -126,6 +128,8 @@ The individual data from SCB is yearly and includes observations for all individ
 | Consumption weight (family) | KonsViktF, KonsViktF04 |
 | Disposable income | DispInkKE, DispInkKE04, DispInk, DispInk04 |
 
+The population registry is complemented with data on schooling results, etc. The complete list of variables can be found in the attached excel file.
+
 ## Detailed Variable Definitions
 
 * **Siblings and parents**: I plan to use SCB's definition of a family with some minor alterations. In their definition, everyone who lives at the same address share a family ID number. For my purposes, I don't want the children to become part of a new family when they move from home, so I plan to use the family ID that they were assigned when they were still young. Moreover, families break up and are recreated in different constellations. I plan to use the following definition:
@@ -133,18 +137,19 @@ The individual data from SCB is yearly and includes observations for all individ
     * Adoptive siblings that share one or two parents
     * To also include "extra" siblings, from e.g. previous marriages, I also include everyone else who is younger than the applicant and shares family ID at some point before the age of 16 for at least 3 years.
 * **Field of study**: There is a multitude of options for how to categorize higher education. The SCB variable SUN2000Grp has 97 fields, while the coarser one only has 2 for higher education. @Kirkeboen2016_field_study create their own categories, and I will use the same; `science, business, social science, teaching, humanities, health, engineering (bsc), technology (msc), law, medicine`. The exact classification of SUN2000Grp into these broader categories can be found in the attached spreadsheet.
-* **Institution**: To decrease the number of institutions somewhat, I will only look at instutions with more than 300 registered students. All other I will pool on the regional (Landsting) level. If there are two 100-student schools in Stockholm, they would both go into the "Stockholm - other schools" institution.
+* **Institution**: To decrease the number of institutions somewhat, I will only look at institutions with more than 300 registered students. All other I will pool on the regional (Landsting) level. If there are two 100-student schools in Stockholm, they would both go into the "Stockholm - other schools" institution.
+* **City**: Captures fixed effects common for all institutions within a city. When schools lie in neighboring cities (e.g. Malmö and Lund) between which students commute, the cities are counted as one category.
 
-### Sample selection and construction
+<!-- ### Sample selection and construction
 
-To prepare the data set for analysis a number of operations will be made. Subjects that have participated in the lottery or are subject to the admission discontinuity need to be extracted, and the correct treatment margins need to be identified. The exact proceedings will differ between projects depending on the research question of interest and are therefore desribed separately in each chapter.
+To prepare the data set for analysis a number of operations will be made. Subjects that have participated in the lottery or are subject to the admission discontinuity need to be extracted, and the correct treatment margins need to be identified. The exact proceedings will differ between projects depending on the research question of interest and are therefore described separately in each chapter. -->
 
-# Power and Possible Sample Extensions
+<!-- # Power and Possible Sample Extensions
 
 The sample I am currently waiting for is limited in size because university applications have only been saved by UHR from 2008 and onwards. Moreover, no similar studies on sibling effect have been published making it hard to know what effect size to expect and any power calculations would be rather uninformative.
 
 To get an initial idea about the number of slots that are randomly allocated each year, we have received aggregated information on the number of applicants who were exactly at the cutoff. For the semesters of Fall 2016 and Spring 2017 a total of 7400 students were randomly offered a spot and 11731 failed the lottery in the first admissions round. It is likely that a substantial portion of these students were offered a spot eventually, but with data for 8 years (2008-2016) this could still potentially be a large enough sample.
 
-While waiting, we have started looking for complementary data from other sources. It is likely that we will be able to include applications also for the years 1993-2005 using a data set managed by Swedish National Archives (Riksarkivet). UHR also has some data from 2006-2007, but it is currently not certain that it will be usable. If we manage to retrieve any of these data sets we will include them in the analysis. Since these supplementary data would be received at a later stage, we will update this pre analysis plan before gaining access and use effect sizes estimated on the original data to estimate the statistical power of tests on the new data set. Any exploratory analysis that was not specified in this plan can then also be registered and tested on the new data.
+While waiting, we have started looking for complementary data from other sources. It is likely that we will be able to include applications also for the years 1993-2005 using a data set managed by Swedish National Archives (Riksarkivet). UHR also has some data from 2006-2007, but it is currently not certain that it will be usable. If we manage to retrieve any of these data sets we will include them in the analysis. Since these supplementary data would be received at a later stage, we will update this pre analysis plan before gaining access and use effect sizes estimated on the original data to estimate the statistical power of tests on the new data set. Any exploratory analysis that was not specified in this plan can then also be registered and tested on the new data. -->
 
 # References

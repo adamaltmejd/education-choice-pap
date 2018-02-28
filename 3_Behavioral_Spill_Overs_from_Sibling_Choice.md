@@ -18,11 +18,13 @@ This document is a pre-analysis plan (PAP), registered in a public repository be
 
 ## Previous Literature
 
-There is a small literature about the effect of role models and social transmission mechanisms. @Kosse2016_formation_prosociality randomly expose both low and high SES children to a pro social mentor, and show that the observed gap in prosociality between groups of different SES is closed, even still 2 years after the treatment. Exposure to the mentor also increases probability to apply for gymnasium, the German academic track high school. Moreover, @Dahl2014_peer_effects find strong peer effects in parental leave uptake between coworkers and brothers, giving credence to the existence of a social transmission mechanism between siblings. Of course, there is also a large body of research on intergenerational mobility [see @Black2011_recent_developments for an overview and e.g. @Fagereng2015_why_wealthy for some causal evidence], where correlations in both education attainment and earnings between generation is prevalent.
+This project is closely related to @Joensen2017_spillovers_educational. They study how younger siblings are affected by their older's choice of high school education when the older sibling experiences an increase in availability of high school maths. They find that younger siblings are 2-3 percentage points more likely to to choose a math/science track in high school if the older sibling was given a quasi-randomly introduced expanded choice margin for science related fields.
+
+There is a small literature about the effect of role models and social transmission mechanisms. @Kosse2016_formation_prosociality randomly expose both low and high SES children to a pro social mentor, and show that the observed gap in prosociality between groups of different SES is closed, even still 2 years after the treatment. Exposure to the mentor also increases probability to apply for gymnasium, the German academic track high school. Moreover, @Dahl2014_peer_effects find strong peer effects in parental leave uptake between coworkers and brothers, giving credence to the existence of a social transmission mechanism between siblings. Of course, there is also a large body of research on intergenerational mobility (see @Black2011_recent_developments for an overview and e.g. @Fagereng2015_why_wealthy for some causal evidence), where correlations in both education attainment and earnings between generation is prevalent.
 
 The existence of an information channel with an impact on student choices has been found in a number of studies. In a similar institutional environment to the Swedish one, @PekkalaKerr2015_postsecondary_education use a large scale field experiment to show that informing students about labor market outcomes of different fields has a large impact on choices of the least informed students. Furthermore, @Fricke2016_exposure_academic use random assignment of the subject matter of students' research paper to show that exposure to Economics increases the likelihood of the field being chosen for major. @Hastings2016_uninformed_college perform a large representative survey of Chilean applicants and find that they systematically overestimate earnings of past graduates. Their respondents list prestige and accreditation as the primary reason for their degree choice. Between 35% and 47% of applicants do not even know what they will earn after graduation. There are many other papers that study the determinants of degree choice, all stressing the importance of non-pecuniary factors. @ScottClayton2012_information_constraints provides a review of this literature, with many examples of how lack of information affects choice.
 
-There is also evidence that the lack of information about higher education is unequal, and affects low SES applicants more. @Hastings2015_effects_earnings use a randomly administered earnings disclosure policy that induces low SES individuals to apply for fields with higher returns. Their results fit well with the hypothesis that I present below; that earnings disclosure mostly affects low SES individuals could be because they are worse informed about the actual outcomes. @Bowen2009_crossing_finish find that a large proportion of highly qualified but poor applicants did not attend the most selective institution that they were qualified for, even though such institutions often offer better financial aid.
+There is also evidence that the lack of information about higher education is unequal, and affects low SES applicants more. @Hastings2015_effects_earnings use a randomly administered earnings disclosure policy that induces low SES individuals to apply for fields with higher returns. Their results fit well with the hypothesis that I present below; that earnings disclosure mostly affects low SES individuals could be because they are worse informed about the actual outcomes. @Bowen2009_crossing_finish find that a large proportion of highly qualified but poor applicants did not attend the most selective institution that they were qualified for, even though such institutions often offer superior financial aid.
 
 ## Hypotheses
 
@@ -38,9 +40,9 @@ These hypothesis will be tested using statistical tests described below. P-value
 
 # Analytical Framework
 
-For an individual $i$, let $D_i$ be their choice among a finite set of choices $\mathbb{J} = \{0,1,2,\ldots\}$, and $E_i$ be a measure of progress or educational attainment. Characterize $i$'s younger sibling by $s(i)$.
+For an individual $i$, let $D_i$ be their choice of education among a finite set of choices $\mathbb{J} = \{0,1,2,\ldots\}$. Think of these as different fields or courses at different institutions. The variable $E_i$ is a measure of progress in that choice. Further, characterize $i$'s younger sibling (possibly more than one) by $s(i)$.
 
-We are interested in a model where the younger sibling's behavior is causally affected by the information about (e.g. the quality of) choice $D_i$ that is received. We can describe the process using a function, unique for each younger sibling, $I_{s(i)}(\cdot)$. What information the younger sibling receives will depend on what field the older sibling is studying, $D_i$, how much they know about that field $E_i$, but also other factors, $\xi_{s(i)}$, such as the relation ship between the siblings and how attentive the younger sibling is, but also the younger sibling's priors. For simplicity we will write $I_{s(i)}$ instead of $I_{s(i)}(E_i, D_i, \xi_{s(i)})$ below.
+We are interested in a model where the younger sibling's behavior is causally affected by an information shock about the quality of choice $D_i$. We can describe the process using a function, unique for each younger sibling, $I_{s(i)}(E_i, D_i, \xi_{s(i)})$, below written $I_{s(i)}$. What information the younger sibling receives will depend on what field the older sibling is studying, $D_i$, how much they know about that field $E_i$, as well as factors, $\xi_{s(i)}$. The laet variable characterizes things like the relationship between siblings and how attentive the younger sibling is, but also, and perhaps most importantly, it captures the younger sibling's prior beliefs about the choice. For example, if the younger sibling already believes that a field is completely amazing, even fairly positive information could be be dissappointing.
 
 For the first research question, we can describe this causal relationship with
 
@@ -62,55 +64,55 @@ We will now explain how we plan to identify and test these causal effects, first
 
 ## Causal Identification
 
-It is well known that the correlation between education choices and different outcomes is highly endogenous (going back to @Mincer1958_investment_human). Students sort by ability, choosing different levels of education depending on how skilled they are to start with. Only with random assignment can we get any proper causal estimates. As explained in the introduction, this study will exploit two sources of exogenous variation; an admission lottery used to break ties and the discontinuities in admissions that can be found around each grade cutoff. Both these sources of variation affect $I(\cdot)$ throught the $D_i$ variable. Students are randomized into fields, creating information shocks about those specific choices relative to others.
+It is well known that the correlation between education choices and different outcomes is highly endogenous (going back to @Mincer1958_investment_human). Students sort by ability, choosing different levels of education depending on how skilled they are to start with. Only with random assignment can we get any proper causal estimates. As explained in the introduction, this study will exploit two sources of exogenous variation; an admission lottery used to break ties and the discontinuities in admissions that can be found around each grade cutoff. Both these sources of variation affect $I(\cdot)$ through the $D_i$ variable. Students are randomly admitted to either a preferred choice (that we refer to as field $j$) or deferred to a lower prioritized option ($k$), producing information shocks about those specific choices relative to others.
 
-We start with a reduced form model. Let $Y_{s(i)}^{RQ}$ be the outcome variable for either research questions ($RQ\in\{1,2\}$). The causal models above can then be described by
+We start with a reduced form model. Let $Y_{s(i)}^{\{1,2\}}$ be the outcome variable for either research question. The causal models above can then be described by
 
 $$
-Y_{s(i)}^{RQ} = \alpha + \beta z_i + X_{s(i)} \gamma + \varepsilon_{s(i)}.
+Y_{s(i)}^{\{1,2\}} = \alpha + \beta z_i + X_{s(i)} \gamma + \varepsilon_{s(i)}.
 $$
 
-It yields the aggregate intention to treat estimates effect from the information shock. With $Z_i\in \mathbb{J}$ being the choice that the applicant is randomly admitted to, our instrument, $z_i$, is $1$ whenever the successful randomization occurs and the applicant is admitted to their preferred choice. Here, $X_{s(i)}$ is a set of control variables that we include to improve precision, and the $\beta$ coefficient gives the effect on ambition and imitation from the random admission.
+It yields the aggregate intention to treat estimates effect from the information shock. With $Z_i\in \mathbb{J}$ being the choice that the applicant is randomly admitted to, our instrument, $z_i$, is $1$ whenever the successful randomization occurs and the applicant is admitted to their preferred choice,$z_i = \mathbb{I}(Z_i = j)$. Here, $X_{s(i)}$ is a set of control variables that we include to improve precision, and the $\beta$ coefficient gives the effect on ambition and imitation from the random admission.
 
 ### Instrumentation
 
-The causal model of information transmission above makes it clear that it is not only the admission in itself ($D_i$) that has an impact. Information is transmitted between siblings all throughout the older's studies ($E_i$) and is affected by many other factors ($\xi_{s(i)}$). Our instrument directly affects admissions to $D_i$, but in the model information transmission is affected by the student actually starting their studies. To capture the actual treatment effect we will use the random admission to instrument for the applicant starting their studies. As was argued in the introductory document, the assumptions needed to get accurate estimates of the LATE are likely to hold, but we will of course also test and report the strength of the instruments. In our main analysis, we will also interact this instrument with an estimate of how surprising the information is to try to get at some of the variation caused by $\xi_{s(i)}$. In supplementary specifications we will explore different approaches and also try to capture the effect from $E_i$.
+The causal model of information transmission above makes it clear that it is not only the admission in itself that has an impact. Information is transmitted between siblings all throughout the older's studies ($E_i$) and is affected by many other factors ($\xi_{s(i)}$). Our instrument directly affects what choice the subject is admitted to ($Z_i$), but in the model, information transmission is affected by the student actually starting their studies ($D_i$). To capture the actual treatment effect we will use the random admission to instrument for the applicant starting their studies. As was argued in the introductory document, the assumptions needed to get accurate estimates of the LATE are likely to hold, but we will of course also test and report the strength of the instruments. In our main analysis, we will also interact this instrument with an estimate of how surprising the information is to try to get at some of the variation caused by $\xi_{s(i)}$. In supplementary specifications we will explore different approaches and also try to capture the effect from $E_i$.
 
-Starting from the simple aggregate versions of the models, using 2SLS we can write the second stage as
+Let $d_i = \mathbb{I}(D_i = j)$, be an indicator variable that is $1$ if the older sibling starts studying their preferred field $j$. Starting from the simple aggregate versions of the models, using 2SLS we can write the second stage as
 
 $$
-Y_{s(i)}^{RQ} = \beta D_{i} + X_i \gamma + \varepsilon_{s(i)},
+Y_{s(i)}^{\{1,2\}} = \beta d_{i} + X_i \gamma + \varepsilon_{s(i)},
 $$
 
 and instrument for information transmission with the first stage
 
 $$
-D_{i} = \pi z_i + X_i \psi + u_{i}.
+d_{i} = \pi z_i + X_i \psi + u_{i}.
 $$
 
 This specification produces LATE estimates for the complier group. However, as we argued above, the effect is likely heterogenous and the estimates from this model will actually be a weighted average of many different treatment dimensions. Our hypothesis for this aggregate effect is that $\beta$ will not be significantly different from zero when studying sibling imitation, although somehwat positive when estimating the effects on younger sibling ambition.
 
 ### News Quality Interaction
 
-To test the second part of our hypotheses, that responses will vary heterogeneously with the positivity of the news shock we use an interaction effect between choice and shock quality, $D_i \times Q_{s(i)D_i}$. According to our hypothesis, the interaction effect coefficient should be positive and significant. We would then have the following second stage
+To test the second part of our hypotheses, that responses will vary heterogeneously with the positivity of the news shock we use an interaction effect between choice and shock quality, $d_i \times Q_{j}$. According to our hypothesis, the interaction effect coefficient should be positive and significant. We would then have the following second stage
 
 $$
-Y_{s(i)}^{RQ} = \beta_1 D_{i} + \beta_2 D_{i} \times Q_{s(i)D_i} + \delta_1 Q_{s(i)D_i} + X_i \gamma + \varepsilon_{s(i)},
+Y_{s(i)}^{\{1,2\}} = \beta_1 d_{i} + \beta_2 d_{i} \times Q_{j} + \delta_1 Q_{j} + X_i \gamma + \varepsilon_{s(i)},
 $$
 
 and two first stage equations,
 
 $$
-D_{i} = \pi_1 z_i + \phi_1 Q_{s(i)D_i} + X_i \psi_1 + u_{i}
+d_{i} = \pi_1 z_i + \phi_1 Q_{j} + X_i \psi_1 + u_{i}
 $$
 
 and
 
 $$
-D_{i} \times Q_{s(i)D_i} = \pi_2 z_i \times Q_{s(i)D_i} + \phi_1 Q_{s(i)D_i} + X_i \psi_2 + v_{s(i)}.
+d_{i} \times Q_{j} = \pi_2 z_i \times Q_{j} + \phi_1 Q_{j} + X_i \psi_2 + v_{i}.
 $$
 
-where $Q_{s(i)D_i}$ is a measure of how positive the news schock is. A higher value means a more positive shock. The interaction effect the captures the influence from this higher quality choice when the older sibling is actually admitted. We expect to see similar effects for both imitation and inspiration using this specification, but we will use slightly different definitions of $Q_{s(i)D_i}$ for the two models.
+where $Q_{j}$ is a measure of how positive the news schock from starting preferred choice $j$ is. A higher value means a more positive shock. The interaction effect the captures the influence from this higher quality choice when the older sibling is actually admitted. We expect to see similar effects for both imitation and inspiration using this specification, but we will use slightly different definitions of $Q_{j}$ for the two models.
 
 ## Supplementary Specifications, Subgroups, and Robustness
 
@@ -118,19 +120,19 @@ Supplementary to the main specifications above, we will estimate a number of alt
 
 A problem with the above tests is that the data actually consist of multiple different experiments, one for each admission margin, and it is not completely clear what the $\beta$ coefficient above would capture. Moreover, the control group is not well-defined. Failure in the lottery leads to deferral to a less preferred choice, but these next-best choices vary between individuals and also admission into them is not certain. Some lottery losers are offered a spot in their next-best choice, others are deferred again.
 
-To get around these issues we will estimate the treatment effect separately for different choices, and test our hypotheses also on these disaggregated models. Let $j\in\mathbb{J}$ be choices and the second stage becomes
+To get around these issues we will estimate the treatment effect separately for different choices, and test our hypotheses also on these disaggregated models,
 
 $$
-Y_{s(i)}^{RQ} = \sum_{j} \left[ \beta_{j} D_{ij} \right] + X_i \gamma + \lambda_j + \varepsilon_{s(i)},
+Y_{s(i)}^{\{1,2\}} = \sum_{j} \left[ \beta_{j} d_{ij} \right] + X_i \gamma + \varepsilon_{s(i)},
 $$
 
-with one first stage for each choice $j$,
+with one first stage for each preferred choice $j$,
 
 $$
-D_{ij} = \sum_{j^{\prime}} \left[ \pi_{j^{\prime}} z_{ij^{\prime}} \right] + X_i \psi_{j} + \eta_j + u_{ij}.
+d_{ij} = \sum_{j^{\prime}} \left[ \pi_{j^{\prime}} z_{ij^{\prime}} \right] + X_i \psi_{j} + u_{ij}.
 $$
 
-Each instrument $z_{ij} = \mathbb{I}(Z_i=j)$ is $1$ if an applicant $i$ is randomly admitted to that specific choice $j$. We use all instruments in every first stage. The $\pi_{jk}$ coefficients can then be thought of as the fraction of students randomly admitted to field $j^{\prime}$ who still transmit information about field $j$. When $j = j^{\prime}$ this is the rate of compliers, while all other $\pi_{j \neq j^{\prime}}$ are fractions of always takers other fields. To control for differences in preferences across individuals we include fixed effects $\lambda_j$, $\eta_j$, taking the value $1$ when an individual prefers field $j$ (no matter if he or she is admitted or not).
+Each instrument $z_{ij} = \mathbb{I}(Z_i=j)$ is $1$ if an applicant $i$ is randomly admitted to $j$. We use all instruments in every first stage. The $\pi_{jk}$ coefficients can then be thought of as the fraction of students randomly admitted to choice $j^{\prime}$ who still transmit information about choice $j$. When $j = j^{\prime}$ this is the rate of compliers, while all other $\pi_{j \neq j^{\prime}}$ are fractions of always takers from other fields.
 
 To test our hypotheses on this disaggregated model is somewhat complicated. An F-test should be significant, as we believe the full model does have explanatory power. We can also rank all choices by quality and should then see a more positive effect for better alternatives. However since the supplementary analysis should be seen mostly as exploratory, we will refine this analysis after we have received the data.
 
@@ -140,7 +142,11 @@ If selection varies systematically not only by what choice the applicant is admi
 
 Moreover, we will test the aggregate models in different subgroups. We will divide the sample into three socio-economic status groups by the education level of the siblings' parents. Our hypothesis is that any effect will be attenuated by higher socio-economic status, as kids with highly educated parents have much better access to information about university education. We will also look at the effects separately by gender.
 
-There is a different mechanism potentially at play when younger siblings imitate the choices of the older. Having an older student at a specific school or in a certain city could decrease the transaction costs of moving there. The younger sibling could perhaps move in with the older sibling. There are a number ways to study if this material transmission mechanism is driving the results. I will check if any results remain after removing those students who only apply to the exact same field-institution combination as their older sibling. I will also estimate institution-specific imitation effects and compare their size to the main results.
+@Joensen2017_spillovers_educational find an effect of sibling imitation but only for sibling pairs where the age difference is small. We will study how the age difference interacts with our treatment using an interaction model similar to the one presented above, and also just by dividing the sample into two groups, $\leq 4$ years and $\leq 10$ years, like they do.
+
+They also study heterogeneity through birth order- and gender interaction effects. We will test their claims by by limiting our sample to the interaction between first- and second-born siblings, and also look at genders separately. @Joensen2017_spillovers_educational argue that competition is an important factor driving imitation, and find that a large part of the imitation comes from brother pairs. The younger brother is 70% more likely to choose STEM fields if their older brothers did so. However competition could also have the opposite effect, where the younger sibling does not want to risk loosing.
+
+There is a different mechanism potentially at play when younger siblings imitate the choices of the older. Having an older student at a specific school or in a certain city could decrease the transaction costs of moving there. The younger sibling could perhaps move in with the older sibling. There are a number ways to study if this material transmission mechanism is driving the results. We will check if any results remain after removing those students who only apply to the exact same field-institution combination as their older sibling. We will also estimate institution-specific imitation effects and compare their size to the main results.
 
 To check robustness further we will also test different definitions of the outcome variables and endogeneous variables, and vary the bandwith around the admission cutoff for the regression discontinuity approach. But since we have yet to explore the data, it is not clear how to exactly specificy these supplementary tests. There will probably be many aspects of the data set that could create confounders, and we will want to study if these affect our results. Any such supplementary analysis will be important, but should be seen as exploratory rather than as evidence for or against our hypotheses.
 
@@ -158,25 +164,25 @@ When estimating the IV equations also the endogeneous variable needs to be clear
 
 As the older sibling continues through their studies, they do learn more and can potentially supply new valuable information ($E_i$ in the causal model). Supplementary to the main specification, we plan to explore many versions of the endogeneous variable to try to capture this mechanism. We will make use of the (non-random) variation in time between when the two siblings starts, both due to age difference and preferences, and include one dummy for each extra year that the older sibling is within the program before the younger applies. On a smaller subsample we can use actual wage after graduation. Also the disaggregated analysis over choices will be informative, as we can look at the distribution of effects over different field and institutions. Given that the extra data set can be used, we will also try an automatic approach and data mine for strong instruments for information transmission that we can then test out of sample after having registered the strategy in an updated version of this plan.
 
-Optimally, we want to somehow measure not only the information transmission, but rather a *news* effect that takes the priors of the younger sibling into account, to distinguishign between information that is new and surprising, and that which is not. The interaction with $Q_{s(i)D_i}$ is included with the purpose to capture some of this effect. As an alternative to the two main definitions of the variable (below) we will also try to directly measure the "surprise" of a specific choice with the residuals from a regression model that predicts school popularity on observable characteristics.
+Optimally, we want to somehow measure not only the information transmission, but rather a *news* effect that takes the priors of the younger sibling into account, to distinguishign between information that is new and surprising, and that which is not. The interaction with $Q_{j}$ is included with the purpose to capture some of this effect. As an alternative to the two main definitions of the variable (below) we will also try to directly measure the "surprise" of a specific choice with the residuals from a regression model that predicts school popularity on observable characteristics.
 
 ### Imitation
 
 For the first research question there are two potential routes for how to specify the dependent variable. Either using a binary measure of whether or not the younger sibling includes the older siblings choice in their application, or a discrete measure of the actual rank of the older sibling's choice. The benefit of the second is that it captures an interesting intensive margin of preferences, but its problem is that the length of the total application list is not fixed.
 
-* The primary, binary, measure is $Y^1_{s(i)} = \mathbb{I}(R_{s(i)}(D_i) = 1)$, an indicator function that is equal to $1$ if the younger sibling ranks the older sibling's choice $D_i$ as their most preferred choice, and $0$ otherwise.
-* The discrete, supplementary, measure is $Y^1_{s(i)} = \frac{R_{s(i)}(D_i)}{\max(R_{s(i)})}$, the ranking of $D_i$ in the younger sibling's application, divided by their total number of applications (to get around the problem of variable ranking length).
+* The primary, binary, measure is $Y^1_{s(i)} = \mathbb{I}(R_{s(i)}(j) = 1)$, an indicator function that is equal to $1$ if the younger sibling ranks the older sibling's preferred choice $j$ as their most preferred choice, and $0$ otherwise.
+* The discrete, supplementary, measure is $Y^1_{s(i)} = \frac{R_{s(i)}(j)}{\max(R_{s(i)})}$, the ranking of $j$ in the younger sibling's application, divided by their total number of applications (to get around the problem of variable ranking length).
 
-We define $Q_{s(i)D_i}$ as the popularity of choice $D_i$ to proxy for news quality. More specifically, we will rank all choices by average selectivity (in terms of application score) and break ties by ranking on the number of eligible applicants to that choice. This way we get a ranking of all choices by popularity that we can use to approximate how positive the information is. One problem with this measure is that popularity is probably also correlated with knowledge about a specific field, which would decrease the potential impact of the interaction. If younger siblings have more accurate priors about popular choices, the information transmitted for these options will have lower news value even though it is very positive. As described above, we will include additional measurements to alleviate this potential problem.
+We define $Q_{j}$ as the popularity of choice $j$ to proxy for news quality. More specifically, we will rank all choices by average selectivity (in terms of application score) and break ties by ranking on the number of eligible applicants to that choice. This way we get a ranking of all choices by popularity that we can use to approximate how positive the information is. One problem with this measure is that popularity is probably also correlated with knowledge about a specific field, which would decrease the potential impact of the interaction. If younger siblings have more accurate priors about popular choices, the information transmitted for these options will have lower news value even though it is very positive. As described above, we will include additional measurements to alleviate this potential problem.
 
 ### Inspiration
 
-For the second research questino, the dependent variable should be a measure of performance or grit that captures how the younger sibling is motivated to study harder by the fact that older is admitted. For our main test we will use a measure of the change in the younger sibling's GPA. The score will be standardized over the whole applicant pool, separately for each type of admission group score.
+For the second research question, the dependent variable should be a measure of performance or grit that captures how the younger sibling is motivated to study harder by the fact that older is admitted. For our main test we will use a measure of the change in the younger sibling's GPA. The score will be standardized over the whole applicant pool, separately for each type of admission group score.
 
 * The main specification will use the difference in standardized GPA between elementary school and high school for those siblings that did not yet have a high school degree when the older sibling applied, $Y^2_{s(i)} = \Delta\text{GPA}_{s(i)}$. However, this requires younger siblings to be in the early years of high school at the time of applications since their elementary school grades need to have been set beforehand. This limits the sample to some extent.
 * To increase sample size we will also use an exploratory version which measures the change across individuals, and where the outcome variable is $Y^2_{s(i)}=\text{GPA}_{s(i)}$.
 
-In the interaction specification for this research question we define $Q_{s(i)D_i}$ somewhat differently. With the thought that the student will be more inspired, the larger the "impact" of the random assignment is, we let the variable be defined as the difference in required standardized admission score between the preferred $j$ and next-best choice $k$. The older sibling is randomly admitted (or not) to choice $j$. We then take the difference between the required score in that admission group and the score in the same admission group but for the less preferred choice $k$. We use standardized required scores over choices for each admission group. The interaction effect coefficient will then give the effect on the change in younger sibling grades (in s.d.) from admission, when the older sibling is admitted to a choice that is 1 s.d. harder to get in to than their next-best alternative.
+In the interaction specification for this research question we define $Q_{j}$ somewhat differently. With the thought that the student will be more inspired, the larger the "impact" of the random assignment is, we let the variable be defined as the difference in required standardized admission score between the preferred $j$ and next-best choice $k$. We take the difference between the required score in the admission group for $j$ where $i$ is randomized and the cutoff score in the same admission group but for the less preferred choice $k$. We use standardized required scores over choices for each admission group. The interaction effect coefficient will then give the effect on the change in younger sibling grades (in s.d.) from admission, when the older sibling is admitted to a choice that is 1 s.d. harder to get in to than their next-best alternative.
 
 ## Control Variables
 
@@ -188,8 +194,12 @@ We will use the same control variables for both research questions and include t
 * Number of siblings
 * Foreign background (binary, according to SCB's definition)
 * Application score of the older sibling
-* When studying imitation; the grades of the younger sibling that were set at the time when the older sibling was randomly admitted
-* When not analyzing subgroups according to this variable, the number of parents with university level education
+* Preferred choice (or field/institution) fixed effects, to control for differences in preferences across sibling pairs
+* When studying imitation: the grades of the younger sibling that were set at the time when the older sibling was randomly admitted
+* When not specifically studying subgorups by parental education:
+    * fixed effects for parents completed level of education, separately for each parent and each level of education (primary, secondary, tertiary)
+    * parental income: mean of household disposable income (`DispInk`, by consumption unit) when applicant is between ages 13 and 16
+    * dummy variables for if any of the parents studied the same *field* as the older sibling is applying to
 
 ## Sample Selection and Construction
 
