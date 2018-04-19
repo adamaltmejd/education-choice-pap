@@ -2,7 +2,7 @@
 title: "Pre-Analysis Plan: 2. Relative Returns to Fields of Study in Sweden"
 author: "Adam Altmejd"
 thanks: "Stockholm School of Economics, adam@altmejd.se"
-date: "2017-10-03"
+date: "2017-04-19"
 ---
 
 # Introduction
@@ -77,13 +77,12 @@ There is a multitude of options for how to categorize higher education. The SCB 
 
 Before joining the application data to the individual registry we will perform a number of operations to properly identify the correct treatment margins. We follow the description given by @Kirkeboen2016_field_study through email correspondance closely.
 
-1. Keep only applications to degree programs
-1. Remove invalid applications, where the student is not qualified or where something is missing (after imputing application scores from the applicants other applications in that admission group and year)
+1. Keep only applications to degree programs.
+1. Remove invalid applications, where the student is not qualified or where something is missing (after imputing application scores from the applicants other applications in that admission group and year).
 1. Drop applicants admitted in special quotas (apart from grades and standardized tests).
-1. Keep only the first observed application.
-1. Keep only applicants with no higher education when applying.
-1. Drop all dominated programs. I.e. those where a higher ranked field had a lower admission threshold, that would thus never be offered to the applicant.
-1. Aggregate choices into fields of study and collapse rankings to get relevant choice margins (between different fields). I.e. if a student applied to med school in two different cities as their preferred choice, then to three engineering schools, and last to a business school; collapse into ($j$) medicine, ($k$) engineering, ($l$) business
+1. Keep only the first observed application to a degree program.
+1. Keep only applicants with no higher education (degree) when applying.
+1. Aggregate choices into fields of study and collapse rankings to get relevant choice margins (between different fields). I.e. if a student applied to med school in two different cities as their preferred choice, then to three engineering schools, and last to a business school; collapse into ($j$) medicine, ($k$) engineering, ($l$) business. When collapsing follow the same procedure as when collapsing admission groups, keeping the most successful outcome.
 1. Keep those observations where there is (quasi) randomization on the correct margin.
     (a) When using the natural experiment, keep only those that participate in a lottery that if they win would put them in preferred field $j$ and if they loose in field $k$.
     (b) For the regression discontinuity approach, this translates to cases where the applicant is predicted to be offered $j$ ($k$) but would have been offered $k$ ($j$) if their score was lower (higher).
@@ -92,5 +91,8 @@ Before joining the application data to the individual registry we will perform a
     (b) Similarly for the RD approach; if the applicant is predicted to be admitted to field $k$, but with slightly lower grades would be admitted to $l$ and with slightly higher to $j$, keep the $j/k$ choice margin.
 
 This will yield a data set of applicants that have been admitted to field $j$ rather than field $k$, with one observation per individual. I will then join this data to the individual characteristics data set from SCB. The final data set will contain one observation per applicant.
+
+### Local estimation
+@Kirkeboen2016_field_study use non-local estimation, including all applicants that are on a margin in the sample, no matter how far away they are from the cutoff. We will compare their approach with an actual regression discontinuity design approach where only applicants close to the cutoff are included. Compared to their approach, when we have identified all admission margins according to the algorithm above, we then drop those applicants that have a score too far away from the cutoff, selecting bandwidth and weights using the procedure in @Imbens2012_optimal_bandwidth.
 
 # References

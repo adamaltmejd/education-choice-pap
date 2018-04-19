@@ -2,7 +2,7 @@
 title: "Pre-Analysis Plan: 1. Introduction"
 author: "Adam Altmejd"
 thanks: "Stockholm School of Economics, adam@altmejd.se"
-date: "2018-02-23"
+date: "2018-04-19"
 ---
 
 # Introduction
@@ -25,15 +25,17 @@ It is difficult to plan for all contingencies when working with empirical data, 
 
 By pre registering this report I fully commit to following the plan outlined below. It is far from impossible that I will run into unexpected obstacles, perhaps requiring me to change course and not follow this plan. But should that happen I will state all such deviations and give arguments to why they are necessary, yielding at worst projects where the pre-analysis plan was not followed, which is arguably still preferable to not having one to start with.
 
-The first version of this pre analysis plan was registered before the authors had access to any data^[The plan was registered at OSF.io on 2017-10-03 and can be accessed via this link: <https://osf.io/rj6t7/>.]. Since then, we have ordered supplementary data from the Swedish National Archives including all applications between 1992 and 2005, and some parts of the plan have been updated. Changes to the plan can be tracked through our [Github Repository](https://github.com/adamaltmejd/education-choice-pap). Extensions to this plan made after the first data was analyzed will therefor only be evaluated on the second data set. This new data set will also provide a robustness measure for the initial analysis.
+The first version of this pre analysis plan was registered before the authors had access to any data^[The plan was registered at OSF.io on 2017-10-03 and can be accessed via this link: <https://osf.io/rj6t7/>.]. Since then, we have ordered supplementary data from the Swedish National Archives including all applications between 1992 and 2005, and some parts of the plan have been updated. Changes to the plan can be tracked through our [Github Repository](https://github.com/adamaltmejd/education-choice-pap). Extensions to this plan made after the first data was analyzed will therefor only be evaluated on the second data set. This new data set will also provide a robustness measure for the initial analysis. This updated plan will be registered on the OSF before we are given access to the second data set. The updated version only includes a minimal number of changes, trying to keep the plan true to its original state, even though the project has developed in several new directions since then. The most important of these changes and direction have been included here, but many others have not, and are referred to as exploratory in the papers.
+
+The code for the project is available in this [github repository](https://github.com/adamaltmejd/education-choice-analysis). Following the history of edits one can clearly see the changes made since this pre analysis plan was published.
 
 # The Application System
 
 The Swedish university application system is centralized. Applicants apply to both multi-year programs that yield degrees at different levels and individual courses that can span as little as a few months in the same application, ranking all these items (below referred to as choices) in order of preference. University credits are measured in ECTS, with 30 ECTS corresponding to one semester of full time studies. A typical bachelor's degree program consists of 180 ECTS over 3 years. In each application round, students can at most be admitted to 45 ECTS per semester, which means that one cannot start two full-time programs at the same time. But nothing prohibits the student from applying and registering for a second program at a later stage.
 
-Students are allocated to choices using a serial dictatorship mechanism. The original serial dictatorship can can easily be shown to be both pareto efficient and strategy-proof [see e.g. @Svensson1999_strategyproof_allocation]. Since there are multiple admission groups for each choice pareto efficiency is no longer certain in this setting, but it is still a weakly dominant strategy to reveal true preferences. This means that the admission decision for a student is in no way dependent on their ranking. The ranking of choices only affects the ability to accept an offer after it has been given.
+Students are allocated to choices using a serial dictatorship mechanism. The original serial dictatorship can can easily be shown to be both pareto efficient and strategy-proof [see e.g. @Svensson1999_strategyproof_allocation]. Since there are multiple admission groups for each choice pareto efficiency is no longer certain in this setting, but it is still a weakly dominant strategy to reveal true preferences in most cases. The admission decision of a student is in no way dependent on their ranking. The ranking of choices only affects the ability to accept an offer after it has been given. The only threat to strategy proofness is that the set of choices submitted is limited to 20. Students therefor have an incentive to strategically place options with high admission probability at the end of their ranking, to avoid ending up with no offer at all. However, most applicant do not even submit lists that long, making the truncation somewhat irrelevant.
 
-Once each semester, applicants submit a list (of any length) where they rank their choices in order of preference. Some courses and programs also start at other dates, but these are fairly uncommon and will be excluded from the analysis. For each choice, applicants are ranked by their score in those admission groups (AG) that they are eligible for. There are several such groups, each using a different score to rank applicants. While many students are admitted in groups based on some version of high school grade averages, others make use of a standardized test similar to the SAT (Högskoleprovet) or go through special interviews that are conducted for certain programs. Students are automatically ranked in all admission groups that they are eligible for.
+Once each semester, applicants submit a list where they rank their choices in order of preference. Some courses and programs also start at other dates, but these are fairly uncommon and will be excluded from the analysis. For each choice, applicants are ranked by their score in those admission groups (AG) that they are eligible for. There are several such groups, each using a different score to rank applicants. While many students are admitted in groups based on some version of high school grade averages, others make use of a standardized test similar to the SAT (Högskoleprovet) or go through special interviews that are conducted for certain programs. Students are automatically ranked in all admission groups that they are eligible for. Importantly, if a student chooses to write the Högskoleprovet, they are eligible for admission in that group on top of their GPA group. However, a student can never be eligible for admission in more than one GPA group.
 
 Each university decides how many students to admit on grades, tests and through other means. Among e.g. the grade-based admission groups, the size of each group is determined by the relative number of eligible applicants. For example students with grades from an older system, and those who have supplemented their grades with post high school classes are admitted in different groups. If there are twice as many applicants with old grades, their admission group will be twice as large as the one for students with grades from the new system.
 
@@ -45,19 +47,22 @@ The process consists of two admission rounds. In the first round, going through 
 
 All students are randomly assigned a lottery number for each of their applications at the start of the application process. The number is used to break ties at admission cutoffs. In an AG with 50 spots, there could be 10 students with the exact same GPA after the 45 best have been admitted. To allocate the five remaining spots between these 10 students, the lottery number is used. In this case the 5 students with the lowest numbers are admitted and the rest are put on the waiting list, in order based on their lottery numbers.
 
-That a student fails the first-round lottery does not mean he or she is not admitted at a later stage. In some cases, all the students who were inititially randomly put on the waiting list will be offered a spot, and no actual randomization will have occurred. In other cases, a few extra students will be admitted in the second round, but exactly who will still be random.
+That a student fails the first-round lottery does not mean he or she is not admitted at a later stage. In some cases, all the students who were initially randomly put on the waiting list will be offered a spot, and no actual randomization will have occurred. In other cases, a few extra students will be admitted in the second round, but exactly who will still be random.
 
 Students that are strongly motivated to study a specific field could interpret a failed lottery (or rejection due to being just below the threshold) as a signal that they were really close and should reapply next year. Using the random variation from a student's final lottery participation as identification is therefor potentially endogenous, as those who re-apply could be more ambitious students. It also happens that students apply for individual courses sometimes unrelated to the field associated with their degree. An Economist might have studied Art History before starting their degree program. Using the first lottery could thus also be incorrect. To get around these issues we will use the first lottery to a degree program as our source of random variation.
 
 Tie-breaking lotteries are used throughout the admission system at all kinds of different grade levels. It's usage is much more common in certain admission groups, however. The `BGII` admission group contains all students who have somehow supplemented their high school degree. Some have retaken high school classes to improve grades, others have extended their e.g. math knowledge to be eligible for engineering studies. This also means that it happens there are more applicants with a perfect score than there are spots, and thus that all admitted students are randomized. This is quite common for medicine, psychology and some other highly selective programs.
 
-I will identify treatment and control groups in the lottery subsample as follows. For a specific admission group (AG), excluding those that received an offers in other groups, the sample consist of those that (a) have the exact same GPA as the person in their AG with the lowest GPA who was still admitted, and (b) are in an AG where at least one person with that GPA was not admitted (after the second round is finalized).
+I will identify treatment and control groups in the lottery subsample as follows. For a specific admission group (AG), excluding those that received an offers in other groups, the sample consist of those that (a) have the exact same score as the person in their AG with the lowest score who was still admitted, and (b) are in an AG where at least one person with that score was not admitted (after the second round is finalized).
+
+### Alternative tie-breakers
+For certain years, schools, and/or programs, lotteries were substituted with other methods to break ties. For example, in the last few years, medical programs usually break GPA ties with HP scores. Similarily, during the mid 2000's many schools chose the applicant by gender (prioritizing whichever gender was underrepresented) when ties occured. In these cases, the lotteries were either weighted by the the relative number of students of that gender, or a 50/50 selection rule was employed, where if multiple spots were allocated for students with that score each gender received half, no matter the proportion of applicants. Fortunately we are able to identify these cases and assign the correct admission probabilities. Any applicant that is not in a lottery since because of the use of the HP as tie breaker is removed from the sample.
 
 ## Discontinuities at Admission Cutoffs
 
 For each choice, some students have scores that put them just above the admission threshold, while others end up just below. As has been argued in many studies, the fact that the exact admission threshold is moving around and that one is so close to receiving an offer, makes admission as good as random. This creates a different source of quasi-random variation that we can use to identify causal effects of education choices. Compared to the previous method, the sample size when also those slightly below and above the actual tie are included is substantially larger.
 
-Similarly to before, we will use the score of the last admitted student as the cutoff value, and since students might apply multiple times I will only look at their first application to a degree program. If nothing else is stated in the individual pre analysis plans, we will use standard optimal bandwith selection as defined by @Imbens2012_optimal_bandwidth.
+Similarly to before, we will use the score of the last admitted student as the cutoff value, and since students might apply multiple times I will only look at their first application that includes a degree program. If nothing else is stated in the individual pre analysis plans, we will use standard optimal bandwidth selection as defined by @Imbens2012_optimal_bandwidth.
 
 ## The Admission Algorithm in More Detail
 
@@ -71,6 +76,20 @@ When the process is finished many students will have multiple successful admissi
 
 When the first round is finished applicants are shown their offers and asked to accept offers and/or to stay on the waiting list for preferred offers. Since some students will reject their initial offers preferred spots will again be vacated and the admission process from round 1 is repeated in round 2. Students that decided to stay on the waiting list for preferred choices have their applications for these choices re-evaluated, and should they be admitted, their previous offer to a less preferred choice is withdrawn. When all free seats are assigned, the finalized student roster is sent to the universities along with the ordered waiting list. In some cases, not all students show up, and the institution can decide to contact students on the waiting list to fill these spots.
 
+# Constructing the data set
+During the construction of the data set several choices have to be made that could impact results. Some choices are specific to each paper, however others are related to the application system and apply to all projects. These data set construction decisions are listed here.
+
+* Students apply to courses and programs in the same process. However, we are currently not able to identify the field of individual courses. Instead, as was specified already above we only look at applications to programs and remove applicants who are only admitted courses even though they have a degree program in their choice list.
+* We then remove all applications to courses, yielding a data set where each applicant is admitted to at least one program.
+* However, in some cases applicants are admitted to multiple programs (can happen if one program is e.g. half time). We then only look at the highest prioritized program. For example, an applicant could have a lottery for a program but also be deterministically admitted to a higher prioritized choice. We would not include these applicants in the data set.
+
+When looking at quasi random assignment, it is possible that an applicant is close to multiple cutoffs. We then only include the highest prioritized randomization.
+
+For each choice, the applicant can only be allocated a spot in one admission group, even when he or she is above the cutoff in multiple groups. To identify the treatment margin, we need to collapse the admission groups. We do so by finding out which group the applicant was furthest away from the cutoff (in terms of standardized score). Using this distance to the cutoff as the running variable. When the applicant is above the cutoff in multiple groups, we still only include them in the local estimation if the highest distance to a cutoff is within the bandwidth. When no application is above the cutoff but multiple ones are exactly at the cutoff (i.e. the applicant participates in multiple lotteries) we look if any produced a successful admission and include that one. When all scores are below the cutoff we use the score that is the highest.
+
+## Including courses in the data set
+Currently we have no way of identifying the field categorization of courses, which is why we drop them from the sample. While some courses are studied separately, as in the example of an Economics major taking a class in Art History, many students create degrees from accumulating a set of courses. It thus makes sense to include those students who have been (quasi) randomly admitted also to courses, if we can create appropriate field assignments. There is a small probability that this will be possible using the VHS data set, and in that case we will include also those applications.
+
 # Causal Estimation
 
 As described above, we have two sources of exogenous variation into different education alternatives that we can use to overcome the well-documented confounder of selection into education. Using this ranodmization in a statistical regression model, we can measure the causal effect of random admission on different outcomes. However, for many questions the treatment of interest is not admission, but rather some component of the subsequent education. The estimates from the regression are intention to treat-effects. To get to the treatment effect of education we need to use instrumental variables.
@@ -81,13 +100,15 @@ Furthermore, @Kirkeboen2016_field_study show that in unordered choice situations
 
 # Data
 
-The data consists of two parts. Registry data on the Swedish population, that includes yearly registries of all individuals from 1970 and onwards. This data is linked to two application registries. One using data archived at the Swedish National archives from years 1992--2005. In 2005, the application system was rebuilt and a new government authority started managing it. We also have their data for the years 2008--2017.
+The data consists of two parts. Registry data on the Swedish population, that includes yearly registries of all individuals from 1970 and onwards. This data is linked to two application registries. One using data archived at the Swedish National archives from years 1992--2005. In 2005, the application system was rebuilt and a new government authority started managing it. We also have data from the new system on applications from 2008--2017.
 
 Currently, all Swedish university applications are managed by Universitets- och Högskolerådet (UHR) through their online portal [Antagning.se](http://www.antagning.se). The application process is described in detail above. The application data will be sent directly from UHR to SCB who will match it to the Swedish population registry and connect all individual level variables before removing any identifying information.
 
 During 1992--2005, applications were managed by Verket för Högskoleservice, VHS. While VHS do not exist anymore, their data has been archived by the Swedish National Archives who will share a linked but anonymized version with us.
 
 In the application data, the unit of observation is $\text{year}\times \text{semester} \times \text{applicant} \times \text{program} \times \text{institution} \times \text{admission group}$ and the variables are described in the table below. Since VHS/UHR only tracks applicants until the second round is finished, they do not know for certain if the applicant has actually started. We will therefor match the application data to the SCB university registry data to see if the applicant is actually registered.
+
+The UHR data has the following structure:
 
 |Variable   | Description   |
 |-----------|---------------|
@@ -98,11 +119,13 @@ In the application data, the unit of observation is $\text{year}\times \text{sem
 | Education_Org_ID | Unique id for the institution |
 | Rank | Rank in the application, from 1 (best) |
 | Qualified | 1 if the applicant is qualified |
-| Sel_criterion_ID | Admission group |
+| Sel_Criterion_ID | Admission group |
 | Score | Score in the AG |
 | Result round 1 | Queue pos. r1, 0 if admitted, NA if not in queue |
 | Result round 2 | Queue pos. r2, 0 if admitted, NA if not in queue |
 | Registered | 1 if student actually started the program (from SCB) |
+
+The data from VHS is divided into a complex structure and that we have yet to gain access to. We will extract the same variables as above from this registry, however.
 
 The individual data from SCB is yearly and includes the complete population registry since 1970, with family links for parents and siblings. It is linked to the application data using the personal identification numbers before it is anonymized.
 
@@ -136,7 +159,7 @@ The population registry is complemented with data on schooling results, etc. The
     * All biological siblings (sharing one or two parents)
     * Adoptive siblings that share one or two parents
     * To also include "extra" siblings, from e.g. previous marriages, I also include everyone else who is younger than the applicant and shares family ID at some point before the age of 16 for at least 3 years.
-* **Field of study**: There is a multitude of options for how to categorize higher education. The SCB variable SUN2000Grp has 97 fields, while the coarser one only has 2 for higher education. @Kirkeboen2016_field_study create their own categories, and I will use the same; `science, business, social science, teaching, humanities, health, engineering (bsc), technology (msc), law, medicine`. The exact classification of SUN2000Grp into these broader categories can be found in the attached spreadsheet.
+* **Field of study**: There is a multitude of options for how to categorize higher education. The SCB variable SUN2000Grp has 97 fields, while the coarser one only has 2 for higher education. @Kirkeboen2016_field_study create their own categories, and I will use the same; `science, business, social science, teaching, humanities, health, engineering (bsc), technology (msc), law, medicine`. The exact classification of SUN codes into these broader categories can be found in the attached spreadsheet.
 * **Institution**: To decrease the number of institutions somewhat, I will only look at institutions with more than 300 registered students. All other I will pool on the regional (Landsting) level. If there are two 100-student schools in Stockholm, they would both go into the "Stockholm - other schools" institution.
 * **City**: Captures fixed effects common for all institutions within a city. When schools lie in neighboring cities (e.g. Malmö and Lund) between which students commute, the cities are counted as one category.
 

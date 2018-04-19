@@ -2,7 +2,7 @@
 title: "Pre-Analysis Plan: 3. Spillovers from Sibling Choices"
 author: "Adam Altmejd"
 thanks: "Stockholm School of Economics, adam@altmejd.se"
-date: "2017-10-03"
+date: "2017-04-19"
 ---
 
 # Introduction
@@ -14,11 +14,11 @@ The purpose of this project is to evaluate how peer experience influences educat
 
 The question of behavioral spill-overs to siblings is interesting for many reasons. For one thing, not many empirical studies of peer influence on decision making exist, and this study will be able to provide some well needed evidence on how we rely on our siblings. Furthermore, information availability about higher education is highly variable over socio-economic groups. In a low SES family, an older sibling that is admitted to college could inspire the other children to apply. Evidence of such behavior would be useful in order to understand the mechanisms of intergenerational mobility within families. Last, because of the nature of this data, We will be able to get quantitative and heterogenous measures of these effects. For example, one could imagine that attractive fields influence younger siblings to study the same topic, while less attractive fields have effects in the opposite direction. We will measure not only the direction but also the sizes of these different responses, quantities that could be of importance for education policy.
 
-This document is a pre-analysis plan (PAP), registered in a public repository before the author has been given access to the data set needed for analysis. Without the possibility to explore the data set it is likely that we will run into many unexpected obstacles. If we for any reason need to deviate from this plan because of such circumstances it will be clearly stated.
+This document is a pre-analysis plan (PAP), registered in a public repository before the author has been given access to the dazta set needed for analysis. Without the possibility to explore the data set it is likely that we will run into many unexpected obstacles. If we for any reason need to deviate from this plan because of such circumstances it will be clearly stated.
 
 ## Previous Literature
 
-This project is closely related to @Joensen2017_spillovers_educational. They study how younger siblings are affected by their older's choice of high school education when the older sibling experiences an increase in availability of high school maths. They find that younger siblings are 2-3 percentage points more likely to to choose a math/science track in high school if the older sibling was given a quasi-randomly introduced expanded choice margin for science related fields.
+This project is closely related to @Joensen2017_spillovers_educational. They study how younger siblings are affected by their older's choice of high school education when the older sibling experiences an increase in availability of high school maths. They find that younger siblings are 2-3 percentage points more likely to to choose a math/science track in high school if the older sibling was given a quasi-randomly introduced expanded choice margin for science related fields. Another related paper is @Dustan2018_family_networks. He studies sibling spillovers in high school choice in Mexico in a regression discontinuity setup, also exploring the mechanisms potentially driving these effects.
 
 There is a small literature about the effect of role models and social transmission mechanisms. @Kosse2016_formation_prosociality randomly expose both low and high SES children to a pro social mentor, and show that the observed gap in prosociality between groups of different SES is closed, even still 2 years after the treatment. Exposure to the mentor also increases probability to apply for gymnasium, the German academic track high school. Moreover, @Dahl2014_peer_effects find strong peer effects in parental leave uptake between coworkers and brothers, giving credence to the existence of a social transmission mechanism between siblings. Of course, there is also a large body of research on intergenerational mobility (see @Black2011_recent_developments for an overview and e.g. @Fagereng2015_why_wealthy for some causal evidence), where correlations in both education attainment and earnings between generation is prevalent.
 
@@ -74,25 +74,9 @@ $$
 
 It yields the aggregate intention to treat estimates effect from the information shock. With $Z_i\in \mathbb{J}$ being the choice that the applicant is randomly admitted to, our instrument, $z_i$, is $1$ whenever the successful randomization occurs and the applicant is admitted to their preferred choice,$z_i = \mathbb{I}(Z_i = j)$. Here, $X_{s(i)}$ is a set of control variables that we include to improve precision, and the $\beta$ coefficient gives the effect on ambition and imitation from the random admission.
 
-### Instrumentation
+### Using heterogeneity to explore mechanisms
 
-The causal model of information transmission above makes it clear that it is not only the admission in itself that has an impact. Information is transmitted between siblings all throughout the older's studies ($E_i$) and is affected by many other factors ($\xi_{s(i)}$). Our instrument directly affects what choice the subject is admitted to ($Z_i$), but in the model, information transmission is affected by the student actually starting their studies ($D_i$). To capture the actual treatment effect we will use the random admission to instrument for the applicant starting their studies. As was argued in the introductory document, the assumptions needed to get accurate estimates of the LATE are likely to hold, but we will of course also test and report the strength of the instruments. In our main analysis, we will also interact this instrument with an estimate of how surprising the information is to try to get at some of the variation caused by $\xi_{s(i)}$. In supplementary specifications we will explore different approaches and also try to capture the effect from $E_i$.
-
-Let $d_i = \mathbb{I}(D_i = j)$, be an indicator variable that is $1$ if the older sibling starts studying their preferred field $j$. Starting from the simple aggregate versions of the models, using 2SLS we can write the second stage as
-
-$$
-Y_{s(i)}^{\{1,2\}} = \beta d_{i} + X_i \gamma + \varepsilon_{s(i)},
-$$
-
-and instrument for information transmission with the first stage
-
-$$
-d_{i} = \pi z_i + X_i \psi + u_{i}.
-$$
-
-This specification produces LATE estimates for the complier group. However, as we argued above, the effect is likely heterogenous and the estimates from this model will actually be a weighted average of many different treatment dimensions. Our hypothesis for this aggregate effect is that $\beta$ will not be significantly different from zero when studying sibling imitation, although somehwat positive when estimating the effects on younger sibling ambition.
-
-### News Quality Interaction
+#### News Quality Interaction
 
 To test the second part of our hypotheses, that responses will vary heterogeneously with the positivity of the news shock we use an interaction effect between choice and shock quality, $d_i \times Q_{j}$. According to our hypothesis, the interaction effect coefficient should be positive and significant. We would then have the following second stage
 
@@ -114,7 +98,39 @@ $$
 
 where $Q_{j}$ is a measure of how positive the news schock from starting preferred choice $j$ is. A higher value means a more positive shock. The interaction effect the captures the influence from this higher quality choice when the older sibling is actually admitted. We expect to see similar effects for both imitation and inspiration using this specification, but we will use slightly different definitions of $Q_{j}$ for the two models.
 
-## Supplementary Specifications, Subgroups, and Robustness
+#### Imitation by field, institution or city
+Between a preferred and less preferred choice many things can vary. The applicant could be randomized between different schools, that sometimes lie in different cities, it could be a randomization between different programs at the same school, etc. To better understand what drives siblings to imitate we will look at these samples separately and evaluate the different magnitudes. Is it the case that siblings mainly follow to the same school, but are not as interested in studying the same field at different schools? Could this be because siblings prefer to live in the same city, creating easier access to e.g. housing. What if said city is the home town of the family?
+
+#### Other Subgroups
+Moreover, we will test the aggregate models in different subgroups. We will divide the sample into three socio-economic status groups by the education level of the siblings' parents. Our hypothesis is that any effect will be attenuated by higher socio-economic status, as kids with highly educated parents have much better access to information about university education. We will also look at the effects separately by gender.
+
+@Joensen2017_spillovers_educational find an effect of sibling imitation but only for sibling pairs where the age difference is small. We will study how the age difference interacts with our treatment using an interaction model similar to the one presented above, and also just by dividing the sample into two groups, $\leq 4$ years and $\leq 10$ years, like they do.
+
+They also study heterogeneity through birth order- and gender interaction effects. We will test their claims by by limiting our sample to the interaction between first- and second-born siblings, and also look at genders separately. @Joensen2017_spillovers_educational argue that competition is an important factor driving imitation, and find that a large part of the imitation comes from brother pairs. The younger brother is 70% more likely to choose STEM fields if their older brothers did so. However competition could also have the opposite effect, where the younger sibling does not want to risk loosing.
+
+There is a different mechanism potentially at play when younger siblings imitate the choices of the older. Having an older student at a specific school or in a certain city could decrease the transaction costs of moving there. The younger sibling could perhaps move in with the older sibling. There are a number ways to study if this material transmission mechanism is driving the results. We will check if any results remain after removing those students who only apply to the exact same field-institution combination as their older sibling. We will also estimate institution-specific imitation effects and compare their size to the main results.
+
+Last, to increase the sample size we will also test the effect including the siblings of those that lotteries and who are thus assigned to their less preferred option. How much does loosing the lottery increase the likelihood that the sibling applies there instead?
+
+### Instrumentation
+
+The causal model of information transmission above makes it clear that it is not only the admission in itself that has an impact. Information is transmitted between siblings all throughout the older's studies ($E_i$) and is affected by many other factors ($\xi_{s(i)}$). Our instrument directly affects what choice the subject is admitted to ($Z_i$), but in the model, information transmission is affected by the student actually starting their studies ($D_i$). To capture the actual treatment effect we will use the random admission to instrument for the applicant starting their studies. As was argued in the introductory document, the assumptions needed to get accurate estimates of the LATE are likely to hold, but we will of course also test and report the strength of the instruments. In our main analysis, we will also interact this instrument with an estimate of how surprising the information is to try to get at some of the variation caused by $\xi_{s(i)}$. In supplementary specifications we will explore different approaches and also try to capture the effect from $E_i$.
+
+Let $d_i = \mathbb{I}(D_i = j)$, be an indicator variable that is $1$ if the older sibling starts studying their preferred field $j$. Starting from the simple aggregate versions of the models, using 2SLS we can write the second stage as
+
+$$
+Y_{s(i)}^{\{1,2\}} = \beta d_{i} + X_i \gamma + \varepsilon_{s(i)},
+$$
+
+and instrument for information transmission with the first stage
+
+$$
+d_{i} = \pi z_i + X_i \psi + u_{i}.
+$$
+
+This specification produces LATE estimates for the complier group. However, as we argued above, the effect is likely heterogenous and the estimates from this model will actually be a weighted average of many different treatment dimensions. Our hypothesis for this aggregate effect is that $\beta$ will not be significantly different from zero when studying sibling imitation, although somehwat positive when estimating the effects on younger sibling ambition.
+
+## Robustness
 
 Supplementary to the main specifications above, we will estimate a number of alternative models. The purpose is to (1) distinguish the information transmission mechanisms from other possible causes of imitation and inspiration, (2) analyze how the effect varies across different interesting sub groups, and (3) test the robustness of the findings.
 
@@ -140,14 +156,6 @@ One problem with this disaggregated model is that without collapsing choices the
 
 If selection varies systematically not only by what choice the applicant is admitted to but also by what their less preferred choice is (as @Kirkeboen2016_field_study argues it does when looking at financial returns) we should estimate the second stage and the set of first stage equations separately for each such next best choice $k$, adding fixed effects also for next-best fields (see their paper for more details on this specification). While it does not seem likely that this preference margin is as important when explaining sibling responses we will include the specification as well.
 
-Moreover, we will test the aggregate models in different subgroups. We will divide the sample into three socio-economic status groups by the education level of the siblings' parents. Our hypothesis is that any effect will be attenuated by higher socio-economic status, as kids with highly educated parents have much better access to information about university education. We will also look at the effects separately by gender.
-
-@Joensen2017_spillovers_educational find an effect of sibling imitation but only for sibling pairs where the age difference is small. We will study how the age difference interacts with our treatment using an interaction model similar to the one presented above, and also just by dividing the sample into two groups, $\leq 4$ years and $\leq 10$ years, like they do.
-
-They also study heterogeneity through birth order- and gender interaction effects. We will test their claims by by limiting our sample to the interaction between first- and second-born siblings, and also look at genders separately. @Joensen2017_spillovers_educational argue that competition is an important factor driving imitation, and find that a large part of the imitation comes from brother pairs. The younger brother is 70% more likely to choose STEM fields if their older brothers did so. However competition could also have the opposite effect, where the younger sibling does not want to risk loosing.
-
-There is a different mechanism potentially at play when younger siblings imitate the choices of the older. Having an older student at a specific school or in a certain city could decrease the transaction costs of moving there. The younger sibling could perhaps move in with the older sibling. There are a number ways to study if this material transmission mechanism is driving the results. We will check if any results remain after removing those students who only apply to the exact same field-institution combination as their older sibling. We will also estimate institution-specific imitation effects and compare their size to the main results.
-
 To check robustness further we will also test different definitions of the outcome variables and endogeneous variables, and vary the bandwith around the admission cutoff for the regression discontinuity approach. But since we have yet to explore the data, it is not clear how to exactly specificy these supplementary tests. There will probably be many aspects of the data set that could create confounders, and we will want to study if these affect our results. Any such supplementary analysis will be important, but should be seen as exploratory rather than as evidence for or against our hypotheses.
 
 # Variable Definitions
@@ -164,7 +172,7 @@ When estimating the IV equations also the endogeneous variable needs to be clear
 
 As the older sibling continues through their studies, they do learn more and can potentially supply new valuable information ($E_i$ in the causal model). Supplementary to the main specification, we plan to explore many versions of the endogeneous variable to try to capture this mechanism. We will make use of the (non-random) variation in time between when the two siblings starts, both due to age difference and preferences, and include one dummy for each extra year that the older sibling is within the program before the younger applies. On a smaller subsample we can use actual wage after graduation. Also the disaggregated analysis over choices will be informative, as we can look at the distribution of effects over different field and institutions. Given that the extra data set can be used, we will also try an automatic approach and data mine for strong instruments for information transmission that we can then test out of sample after having registered the strategy in an updated version of this plan.
 
-Optimally, we want to somehow measure not only the information transmission, but rather a *news* effect that takes the priors of the younger sibling into account, to distinguishign between information that is new and surprising, and that which is not. The interaction with $Q_{j}$ is included with the purpose to capture some of this effect. As an alternative to the two main definitions of the variable (below) we will also try to directly measure the "surprise" of a specific choice with the residuals from a regression model that predicts school popularity on observable characteristics.
+Optimally, we want to somehow measure not only the information transmission, but rather a *news* effect that takes the priors of the younger sibling into account, to distinguishign between information that is new and surprising, and that which is not. The interaction with $Q_{j}$ is included with the purpose to capture some of this effect. As an alternative to the two main definitions of the variable (below) we will also try to directly measure the "surprise" of a specific choice with the residuals from a regression model that predicts school popularity on observable characteristics, and try to estimate the value added between different choices if possible.
 
 ### Imitation
 
@@ -206,10 +214,10 @@ We will use the same control variables for both research questions and include t
 When constructing the data set we will have to make a number of decisions on what data to keep and exactly how to measure each feature. Before matching the SCB data to the application data we will construct an application data set that contains one observation per individual, focusing on the relevant admission margins where randomization has occurred (and thus only include a preferred choice $j$ and a less preferred choice $k$). To produce this data set we will:
 
 1. Keep only applications to degree programs and drop applications to free-standing courses.
-2. After imputing scores for admission groups where a missing score can be found in a different application from the same individual, remove invalid applications. This could be when the student ends up not being eligible or when application data is missing for some reason.
-3. Drop all dominated choices, those that will never be offered for a student because a preferred course has lower admission requirements.
-5. Keep only the first application period for each individual to a degree program where they either (a) pariticpate in a lottery, or (b) have an application score close enough to a cutoff. Set choice over which the randomization was performed to choice $j$ (the preferred choice).
-6. Identify the correct treatment margin, i.e. what would the applicant be admitted to if the lottery failed, and set this to the next-best choice $k$.
+1. Remove invalid applications. This could be when the student ends up not being eligible or when application data is missing for some reason.
+1. Keep only the first application period for each individual to a degree program where they either (a) pariticipate in a lottery, or (b) have an application score close enough to a cutoff. Set choice over which the randomization was performed to choice $j$ (the preferred choice).
+1. Identify the correct treatment margin, i.e. what would the applicant be admitted to if the lottery failed, and set this to the next-best choice $k$.
+1. When there are multiple randomizations, keep the margin that includes a successful admission.
 
 As we discussed above we will have to pool applications into aggregated fields or institutions when looking at the effect heterogeneously, and collapse choices into these pooled variables. For example, if a student applied to medical school in two different cities as their preferred choice, then to three engineering schools, and last to a business school; we collapse their choice into ($j$) medicine, ($k$) engineering and ($l$) business. Or if collapsing by institution, if the applicant has medical school at Karolinska Institutet at their first choice, psychology at the same school as their second and medicine at Lund University as their third, collapse into Karolinska ($j$) and Lund ($k$). We then also need to find those applications where the treatment margin "bites", and keep only those observations where the preferred choice and next-best choice are in different fields/institutions.
 
