@@ -153,6 +153,9 @@ The individual data from SCB is yearly and includes the complete population regi
 
 The population registry is complemented with data on schooling results, etc. The complete list of variables can be found in the attached excel file.
 
+## VHS Incompleteness
+For some years in the VHS data, applications to certain schools are not included. Indeed, Stockholm University used their own admission system until the mid 2000s, and so did Stockholm School of Economics. While there is no way for us to know if an applicant actually applied to any of these schools, we have data on their degrees and thus whether they eventually finished. We will therefor remove any applicants from our sample that received degrees from schools that are not in the VHS data.
+
 ## Detailed Variable Definitions
 
 * **Siblings and parents**: I plan to use SCB's definition of a family with some minor alterations. In their definition, everyone who lives at the same address share a family ID number. For my purposes, I don't want the children to become part of a new family when they move from home, so I plan to use the family ID that they were assigned when they were still young. Moreover, families break up and are recreated in different constellations. I plan to use the following definition:
