@@ -87,9 +87,6 @@ When looking at quasi random assignment, it is possible that an applicant is clo
 
 For each choice, the applicant can only be allocated a spot in one admission group, even when he or she is above the cutoff in multiple groups. To identify the treatment margin, we need to collapse the admission groups. We do so by finding out which group the applicant was furthest away from the cutoff (in terms of standardized score). Using this distance to the cutoff as the running variable. When the applicant is above the cutoff in multiple groups, we still only include them in the local estimation if the highest distance to a cutoff is within the bandwidth. When no application is above the cutoff but multiple ones are exactly at the cutoff (i.e. the applicant participates in multiple lotteries) we look if any produced a successful admission and include that one. When all scores are below the cutoff we use the score that is the highest.
 
-## Including courses in the data set
-Currently we have no way of identifying the field categorization of courses, which is why we drop them from the sample. While some courses are studied separately, as in the example of an Economics major taking a class in Art History, many students create degrees from accumulating a set of courses. It thus makes sense to include those students who have been (quasi) randomly admitted also to courses, if we can create appropriate field assignments. There is a small probability that this will be possible using the VHS data set, and in that case we will include also those applications.
-
 # Causal Estimation
 
 As described above, we have two sources of exogenous variation into different education alternatives that we can use to overcome the well-documented confounder of selection into education. Using this ranodmization in a statistical regression model, we can measure the causal effect of random admission on different outcomes. However, for many questions the treatment of interest is not admission, but rather some component of the subsequent education. The estimates from the regression are intention to treat-effects. To get to the treatment effect of education we need to use instrumental variables.
@@ -155,6 +152,9 @@ The population registry is complemented with data on schooling results, etc. The
 
 ## VHS Incompleteness
 For some years in the VHS data, applications to certain schools are not included. Indeed, Stockholm University used their own admission system until the mid 2000s, and so did Stockholm School of Economics. While there is no way for us to know if an applicant actually applied to any of these schools, we have data on their degrees and thus whether they eventually finished. We will therefor remove any applicants from our sample that received degrees from schools that are not in the VHS data.
+
+## Including courses in the data set
+Currently we have no way of identifying the field categorization of courses, which is why we drop them from the sample. While some courses are studied separately, as in the example of an Economics major taking a class in Art History, many students create degrees from accumulating a set of courses. It thus makes sense to include those students who have been (quasi) randomly admitted also to courses, if we can create appropriate field assignments. There is a small probability that this will be possible using the VHS data set, and in that case we will include also those applications.
 
 ## Detailed Variable Definitions
 
