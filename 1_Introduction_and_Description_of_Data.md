@@ -2,7 +2,7 @@
 title: "Pre-Analysis Plan: 1. Introduction"
 author: "Adam Altmejd"
 thanks: "Stockholm School of Economics, adam@altmejd.se"
-date: "2018-04-19"
+date: "2018-04-27"
 ---
 
 # Introduction
@@ -83,7 +83,7 @@ During the construction of the data set several choices have to be made that cou
 * We then remove all applications to courses, yielding a data set where each applicant is admitted to at least one program.
 * However, in some cases applicants are admitted to multiple programs (can happen if one program is e.g. half time). We then only look at the highest prioritized program. For example, an applicant could have a lottery for a program but also be deterministically admitted to a higher prioritized choice. We would not include these applicants in the data set.
 
-When looking at quasi random assignment, it is possible that an applicant is close to multiple cutoffs. We then only include the highest prioritized randomization.
+When looking at quasi random assignment, it is possible that an applicant is close to multiple cutoffs. In our first pre analysis plan, we planned to only include the highest prioritized randomization. To increase the number of observations we will also implement a version where we try to use all application margins. An applicant can be close to many thresholds in an RD design, or participate in many lotteries. In the first case, each margin is a pair of preferred and next-best choice that can be used as a separate observation. In the second, the applicant could lose multiple lotteries. Each such lottery can then be included in the data set. In both these cases, standard errors will be clustered by individual.
 
 For each choice, the applicant can only be allocated a spot in one admission group, even when he or she is above the cutoff in multiple groups. To identify the treatment margin, we need to collapse the admission groups. We do so by finding out which group the applicant was furthest away from the cutoff (in terms of standardized score). Using this distance to the cutoff as the running variable. When the applicant is above the cutoff in multiple groups, we still only include them in the local estimation if the highest distance to a cutoff is within the bandwidth. When no application is above the cutoff but multiple ones are exactly at the cutoff (i.e. the applicant participates in multiple lotteries) we look if any produced a successful admission and include that one. When all scores are below the cutoff we use the score that is the highest.
 
@@ -165,17 +165,5 @@ Currently we have no way of identifying the field categorization of courses, whi
 * **Field of study**: There is a multitude of options for how to categorize higher education. The SCB variable SUN2000Grp has 97 fields, while the coarser one only has 2 for higher education. @Kirkeboen2016_field_study create their own categories, and I will use the same; `science, business, social science, teaching, humanities, health, engineering (bsc), technology (msc), law, medicine`. The exact classification of SUN codes into these broader categories can be found in the attached spreadsheet.
 * **Institution**: To decrease the number of institutions somewhat, I will only look at institutions with more than 300 registered students. All other I will pool on the regional (Landsting) level. If there are two 100-student schools in Stockholm, they would both go into the "Stockholm - other schools" institution.
 * **City**: Captures fixed effects common for all institutions within a city. When schools lie in neighboring cities (e.g. Malmö and Lund) between which students commute, the cities are counted as one category.
-
-<!-- ### Sample selection and construction
-
-To prepare the data set for analysis a number of operations will be made. Subjects that have participated in the lottery or are subject to the admission discontinuity need to be extracted, and the correct treatment margins need to be identified. The exact proceedings will differ between projects depending on the research question of interest and are therefore described separately in each chapter. -->
-
-<!-- # Power and Possible Sample Extensions
-
-The sample I am currently waiting for is limited in size because university applications have only been saved by UHR from 2008 and onwards. Moreover, no similar studies on sibling effect have been published making it hard to know what effect size to expect and any power calculations would be rather uninformative.
-
-To get an initial idea about the number of slots that are randomly allocated each year, we have received aggregated information on the number of applicants who were exactly at the cutoff. For the semesters of Fall 2016 and Spring 2017 a total of 7400 students were randomly offered a spot and 11731 failed the lottery in the first admissions round. It is likely that a substantial portion of these students were offered a spot eventually, but with data for 8 years (2008-2016) this could still potentially be a large enough sample.
-
-While waiting, we have started looking for complementary data from other sources. It is likely that we will be able to include applications also for the years 1993-2005 using a data set managed by Swedish National Archives (Riksarkivet). UHR also has some data from 2006-2007, but it is currently not certain that it will be usable. If we manage to retrieve any of these data sets we will include them in the analysis. Since these supplementary data would be received at a later stage, we will update this pre analysis plan before gaining access and use effect sizes estimated on the original data to estimate the statistical power of tests on the new data set. Any exploratory analysis that was not specified in this plan can then also be registered and tested on the new data. -->
 
 # References

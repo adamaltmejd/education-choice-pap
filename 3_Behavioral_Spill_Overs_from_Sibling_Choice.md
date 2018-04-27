@@ -2,7 +2,7 @@
 title: "Pre-Analysis Plan: 3. Spillovers from Sibling Choices"
 author: "Adam Altmejd"
 thanks: "Stockholm School of Economics, adam@altmejd.se"
-date: "2017-04-19"
+date: "2017-04-27"
 ---
 
 # Introduction
@@ -101,6 +101,8 @@ where $Q_{j}$ is a measure of how positive the news schock from starting preferr
 #### Imitation by field, institution or city
 Between a preferred and less preferred choice many things can vary. The applicant could be randomized between different schools, that sometimes lie in different cities, it could be a randomization between different programs at the same school, etc. To better understand what drives siblings to imitate we will look at these samples separately and evaluate the different magnitudes. Is it the case that siblings mainly follow to the same school, but are not as interested in studying the same field at different schools? Could this be because siblings prefer to live in the same city, creating easier access to e.g. housing. What if said city is the home town of the family?
 
+We will do this by including specifications where we only look at margins where the field, institution, or city varies, and redefine the dependent variable to be $1$ when the sibling applies to the same thing at this level (i.e. applies to the a program in the same city). We will use field levels from Sun2000Grp, with approximately 60 different fields (the key translating between different field definitions is attached), and collapse smaller institutions as described in the introduction.
+
 #### Other Subgroups
 Moreover, we will test the aggregate models in different subgroups. We will divide the sample into three socio-economic status groups by the education level of the siblings' parents. Our hypothesis is that any effect will be attenuated by higher socio-economic status, as kids with highly educated parents have much better access to information about university education. We will also look at the effects separately by gender.
 
@@ -152,11 +154,9 @@ Each instrument $z_{ij} = \mathbb{I}(Z_i=j)$ is $1$ if an applicant $i$ is rando
 
 To test our hypotheses on this disaggregated model is somewhat complicated. An F-test should be significant, as we believe the full model does have explanatory power. We can also rank all choices by quality and should then see a more positive effect for better alternatives. However since the supplementary analysis should be seen mostly as exploratory, we will refine this analysis after we have received the data.
 
-One problem with this disaggregated model is that without collapsing choices the number of treatment margins is very large (one for each combination of choices). To get around this we will follow @Kirkeboen2016_field_study and pool choices by field of study and institution separately. But we will also use machine learning techniques to identify the most important heterogenous causal effects of the full model, and then hopefully be able to test these on the larger data set that will become available at a later stage.
-
 If selection varies systematically not only by what choice the applicant is admitted to but also by what their less preferred choice is (as @Kirkeboen2016_field_study argues it does when looking at financial returns) we should estimate the second stage and the set of first stage equations separately for each such next best choice $k$, adding fixed effects also for next-best fields (see their paper for more details on this specification). While it does not seem likely that this preference margin is as important when explaining sibling responses we will include the specification as well.
 
-To check robustness further we will also test different definitions of the outcome variables and endogeneous variables, and vary the bandwith around the admission cutoff for the regression discontinuity approach. But since we have yet to explore the data, it is not clear how to exactly specificy these supplementary tests. There will probably be many aspects of the data set that could create confounders, and we will want to study if these affect our results. Any such supplementary analysis will be important, but should be seen as exploratory rather than as evidence for or against our hypotheses.
+To check robustness further we will also test different definitions of the outcome variables and endogeneous variables, and vary the bandwidth around the admission cutoff for the regression discontinuity approach. But since we have yet to explore the data, it is not clear how to exactly specify these supplementary tests. There will probably be many aspects of the data set that could create confounders, and we will want to study if these affect our results. Any such supplementary analysis will be important, but should be seen as exploratory rather than as evidence for or against our hypotheses.
 
 # Variable Definitions
 

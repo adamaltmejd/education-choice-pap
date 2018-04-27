@@ -2,7 +2,7 @@
 title: "Pre-Analysis Plan: 2. Relative Returns to Fields of Study in Sweden"
 author: "Adam Altmejd"
 thanks: "Stockholm School of Economics, adam@altmejd.se"
-date: "2017-04-19"
+date: "2017-04-27"
 ---
 
 # Introduction
@@ -63,7 +63,7 @@ for each field $j\neq k$. With a set of control variables $X_i$ in the baseline 
 
 ## Variable Definitions
 
-The outcome variable is income 6 years after the year when the student was admitted to the program, instead of the 8 years used in the original study. The reason for this deviation is that the sample is currently too small. Ideally we would use 8 years like the original authors do, and if we do get access to the larger data set we will do so. We will use the SCB variable `ForvInk` which includes both wages and income from self-employment, deflated by the 2015 CPI.
+The outcome variable is income 8 years after the year when the student was admitted to the program.
 
 As in @Kirkeboen2016_field_study, we will model educational attainment as a dummy variable $d_{ij} = \mathbb{I}(D_i = j)$ taking the value $1$ if individual $i$ has finished a *degree* in field $j$.
 
@@ -79,8 +79,8 @@ Before joining the application data to the individual registry we will perform a
 
 1. Keep only applications to degree programs.
 1. Remove invalid applications, where the student is not qualified or where something is missing (after imputing application scores from the applicants other applications in that admission group and year).
-1. Drop applicants admitted in special quotas (apart from grades and standardized tests).
-1. Keep only the first observed application to a degree program.
+1. Drop applicants admitted in special quotas (apart from grades from high school and "Folkhögskola", as well as Högskoleprovet), then collapse admission groups, keeping the group where the difference between the score and the cutoff is the largest ($\max\{\text{GPA} - \text{cutoff}\}$).
+1. Keep only the first observed application period where tha applicant applies to a degree program.
 1. Keep only applicants with no higher education (degree) when applying.
 1. Aggregate choices into fields of study and collapse rankings to get relevant choice margins (between different fields). I.e. if a student applied to med school in two different cities as their preferred choice, then to three engineering schools, and last to a business school; collapse into ($j$) medicine, ($k$) engineering, ($l$) business. When collapsing follow the same procedure as when collapsing admission groups, keeping the most successful outcome.
 1. Keep those observations where there is (quasi) randomization on the correct margin.
@@ -92,7 +92,8 @@ Before joining the application data to the individual registry we will perform a
 
 This will yield a data set of applicants that have been admitted to field $j$ rather than field $k$, with one observation per individual. I will then join this data to the individual characteristics data set from SCB. The final data set will contain one observation per applicant.
 
-### Local estimation
-@Kirkeboen2016_field_study use non-local estimation, including all applicants that are on a margin in the sample, no matter how far away they are from the cutoff. We will compare their approach with an actual regression discontinuity design approach where only applicants close to the cutoff are included. Compared to their approach, when we have identified all admission margins according to the algorithm above, we then drop those applicants that have a score too far away from the cutoff, selecting bandwidth and weights using the procedure in @Imbens2012_optimal_bandwidth.
+The above description follows the procedure in @Kirkeboen2016_field_study as closely as possible. We will also however try to ameliorate their process. First and foremost, they use non-local estimation, including all applicants that are on a margin in the sample, no matter how far away they are from the cutoff. We will compare their approach with an actual regression discontinuity design approach where only applicants close to the cutoff are included. Compared to their approach, when we have identified all admission margins according to the algorithm above, we then drop those applicants that have a score too far away from the cutoff, selecting bandwidth and weights using the procedure in @Imbens2012_optimal_bandwidth.
+
+Second, we will try to make use of more of the variation in the data. For one thing, we have a sample of applicants that are exactly at the cutoff, out of which a random sample will be offered spots. This lottery sample can be joined to the discontinuity sample for an increase in power. As described in the introduction, we will also include each applicant multiple times, once for each admission margin within the bandwidth. An applicant can potentially be just below several cutoffs, but can only be just above one, the one to which they are actually admitted. Since the applications are collapsed by field, however, only a small fraction of applicants will have more than two different fields in their application. When using multiple admission thresholds, standard errors will be clustered by applicant.
 
 # References
